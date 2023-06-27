@@ -120,7 +120,11 @@ data %>%
     ),
     digits= everything()~ 0
   ) %>% 
-  add_p() # Ajout de la p_value 
+  add_overall(last= TRUE) %>%
+  add_p(pvalue_fun = ~ style_pvalue(.x, digits = 2)) %>%
+  modify_header(label ~ "**Variables**") %>%
+  modify_caption("**Repartition sur statut matrimoniale**") %>%
+  bold_labels()
 
 ## Variable qualitatif----
 
@@ -133,7 +137,12 @@ data %>%
     ),
     digits= everything()~ 0
   ) %>% 
-  add_p() #Effectue le test d'indépendeance et affiche les résultats
+  add_overall(last= TRUE) %>%
+  add_p(pvalue_fun = ~ style_pvalue(.x, digits = 2)) %>%
+  modify_header(label ~ "**Variables**") %>%
+  modify_caption("**Repartition selon l'origine**") %>%
+  bold_labels()
+
 
 #Partie 2 : Regréssion économétrique----
 
